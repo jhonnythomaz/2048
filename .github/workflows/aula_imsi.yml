@@ -15,22 +15,22 @@ concurrency:
 
 jobs:
   build: 
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest 
 
     steps:
       - name: Checkout do repositorio
         uses: actions/checkout@v4
 
-        - name: upload 
-          uses: actions/upload-pages-artifact@v3
-          with:
-            path: ./
+      - name: upload 
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./
 
   deploy:
-    enviroment: 
-      name: githun-pages
-      url: $({ steps.deployment.outputs.page_url })
-    run-on: ubuntu-latest 
+    environment: 
+      name: github-pages 
+      url: ${{ steps.deployment.outputs.page_url }} 
+    runs-on: ubuntu-latest 
     needs: build
     steps:
       - name: Deploy no Github Pages
